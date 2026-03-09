@@ -1,0 +1,1027 @@
+/* ─── Fonts ──────────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Courier+Prime&family=Cinzel:wght@400;700&family=Josefin+Sans:wght@400;600&family=Share+Tech+Mono&family=Uncial+Antiqua&display=swap');
+
+/* ─── Note card — base ───────────────────────────────────────────────────── */
+
+.waymark-note {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  min-height: 120px;
+  pointer-events: all;
+  overflow: visible;
+  box-sizing: border-box;
+  font-family: var(--wm-font, "Patrick Hand", cursive);
+}
+
+/* ─── Header / drag bar ──────────────────────────────────────────────────── */
+
+.waymark-header {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 6px;
+  gap: 6px;
+  cursor: grab;
+  flex-shrink: 0;
+  user-select: none;
+  position: relative;
+  min-width: 0;
+}
+.waymark-header:active { cursor: grabbing; }
+
+/* ─── Color button ───────────────────────────────────────────────────────── */
+
+.waymark-color-btn {
+  all: unset;
+  display: block;
+  width: 13px;
+  height: 13px;
+  min-width: 13px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.25);
+  flex-shrink: 0;
+  transition: transform 0.1s, border-color 0.1s;
+  box-sizing: border-box;
+}
+.waymark-color-btn:hover {
+  transform: scale(1.2);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* ─── Font buttons ───────────────────────────────────────────────────────── */
+
+.waymark-font-btn--down,
+.waymark-font-btn--up {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.55);
+  transition: color 0.1s;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.waymark-font-btn--down { padding: 2px 1px 2px 3px; margin-right: -4px; }
+.waymark-font-btn--up   { padding: 2px 3px 2px 1px; margin-left: -4px; }
+.waymark-font-btn--down:hover,
+.waymark-font-btn--up:hover { color: rgba(255,255,255,0.95); }
+
+.waymark-font-btn--down {
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 6px;
+  margin-left: 4px;
+}
+
+.waymark-font-label {
+  font-family: sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  min-width: 14px;
+  text-align: center;
+  user-select: none;
+  padding: 0 1px;
+}
+
+/* ─── Pin button ─────────────────────────────────────────────────────────── */
+
+.waymark-pin-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.15s;
+  flex-shrink: 1;
+  min-width: 0;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 8px;
+  margin-left: 2px;
+}
+.waymark-pin-btn:hover { opacity: 0.8; }
+.waymark-pin-btn--active { opacity: 1; }
+
+.waymark-pin-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: grayscale(1) brightness(2);
+  opacity: 0.55;
+}
+.waymark-pin-btn--active .waymark-pin-icon { filter: none; opacity: 1; }
+
+.waymark-pin-label {
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+}
+
+/* ─── Header spacer ──────────────────────────────────────────────────────── */
+
+.waymark-header-spacer { flex: 1; }
+
+/* ─── Right group ────────────────────────────────────────────────────────── */
+
+.waymark-right-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 7px;
+  margin-left: 2px;
+}
+
+.waymark-sync {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(255,255,255,0.55);
+  flex-shrink: 0;
+  position: relative;
+  top: -1px;
+  transition: color 0.1s;
+}
+.waymark-sync:hover  { color: rgba(255,255,255,0.95); }
+.waymark-sync:active { color: rgba(255,255,255,0.3); }
+
+.waymark-collapse,
+.waymark-perms,
+.waymark-send-gm,
+.waymark-delete {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.1s;
+  flex-shrink: 0;
+}
+.waymark-collapse  { padding: 2px 1px 2px 3px; }
+.waymark-perms     { padding: 2px 1px; font-size: 10px; }
+.waymark-send-gm   { padding: 2px 1px; font-size: 10px; }
+.waymark-delete    { padding: 2px 3px 2px 1px; }
+.waymark-collapse:hover,
+.waymark-perms:hover,
+.waymark-send-gm:hover,
+.waymark-delete:hover { color: rgba(255,255,255,0.95); }
+
+/* ─── Color picker panel ─────────────────────────────────────────────────── */
+
+.waymark-color-panel {
+  position: absolute;
+  top: 38px;
+  left: 6px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  z-index: 9999;
+  width: 196px;
+}
+.waymark-color-panel--hidden { display: none; }
+
+.waymark-picker-section + .waymark-picker-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.waymark-picker-label {
+  font-family: sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #555;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.waymark-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.waymark-swatch {
+  all: unset;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid rgba(0,0,0,0.15);
+  transition: transform 0.1s, border-color 0.1s;
+}
+.waymark-swatch:hover {
+  transform: scale(1.2);
+  border-color: rgba(0,0,0,0.4);
+}
+
+.waymark-custom-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 7px;
+}
+
+.waymark-custom-label {
+  font-size: 11px;
+  color: #666;
+  font-family: sans-serif;
+  flex-shrink: 0;
+}
+
+.waymark-custom-input {
+  width: 32px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.waymark-color-reset {
+  all: unset;
+  font-size: 13px;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+  transition: color 0.1s;
+  margin-left: auto;
+}
+.waymark-color-reset:hover { color: #333; }
+
+/* ─── Body textarea ──────────────────────────────────────────────────────── */
+
+.waymark-content {
+  all: unset;
+  flex: 1;
+  padding: 10px 12px;
+  font-family: var(--wm-font, "Patrick Hand", cursive);
+  font-size: 24px;
+  line-height: 1.1;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+  resize: none;
+  box-sizing: border-box;
+  width: 100%;
+  background: transparent;
+  cursor: text;
+}
+
+/* ─── Resize handle ──────────────────────────────────────────────────────── */
+
+.waymark-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  cursor: se-resize;
+  border-radius: 0 0 6px 0;
+}
+
+/* ─── Collapsed state ────────────────────────────────────────────────────── */
+
+.waymark-note--collapsed { height: auto !important; min-height: 0 !important; overflow: hidden; }
+.waymark-note--collapsed .waymark-content,
+.waymark-note--collapsed .waymark-resize-handle { display: none; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THEMES — Each theme uses CSS variables set by applyColors() in JS.
+   Variables: --wm-color1, --wm-color2, --wm-color1-dark, --wm-color1-bright, --wm-text
+   ══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ─── 1. Sticky ──────────────────────────────────────────────────────────── */
+
+.waymark-theme-sticky {
+  border-radius: 6px;
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.35);
+  background-color: var(--wm-color1, #fef08a);
+}
+.waymark-theme-sticky .waymark-header {
+  background: rgba(0,0,0,0.42);
+  border-radius: 6px 6px 0 0;
+}
+.waymark-theme-sticky .waymark-content { color: rgba(0,0,0,0.8); }
+.waymark-theme-sticky .waymark-content::placeholder { color: rgba(0,0,0,0.3); font-style: italic; }
+.waymark-theme-sticky .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 50%);
+}
+.waymark-theme-sticky .waymark-resize-handle:hover {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.4) 50%);
+}
+.waymark-theme-sticky .waymark-note--collapsed .waymark-header { border-radius: 6px; }
+
+
+/* ─── 2. Index Card ──────────────────────────────────────────────────────── */
+
+.waymark-theme-indexcard {
+  border-radius: 2px;
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.45);
+  background: #fafaf5;
+}
+.waymark-theme-indexcard .waymark-header {
+  background: var(--wm-color1, #c0392b);
+  border-bottom: 3px solid color-mix(in srgb, var(--wm-color1, #c0392b) 70%, black);
+  border-radius: 2px 2px 0 0;
+}
+.waymark-theme-indexcard .waymark-content { color: #222; }
+.waymark-theme-indexcard .waymark-content::placeholder { color: rgba(0,0,0,0.3); font-style: italic; }
+.waymark-theme-indexcard .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.15) 50%);
+}
+
+
+/* ─── 3. Chalkboard ──────────────────────────────────────────────────────── */
+
+.waymark-theme-chalkboard {
+  border-radius: 4px;
+  border: 8px solid var(--wm-color1, #5a3e2b);
+  outline: 2px solid color-mix(in srgb, var(--wm-color1, #5a3e2b) 70%, black);
+  box-shadow: 2px 4px 12px rgba(0,0,0,0.6), inset 0 0 30px rgba(0,0,0,0.3);
+  background: var(--wm-color2, #2d4a3e);
+}
+.waymark-theme-chalkboard .waymark-header {
+  background: rgba(0,0,0,0.35);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.waymark-theme-chalkboard .waymark-content {
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+.waymark-theme-chalkboard .waymark-content::placeholder { color: rgba(255,255,255,0.3); font-style: italic; }
+.waymark-theme-chalkboard .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,0.1) 50%);
+}
+
+
+/* ─── 4. Terminal ────────────────────────────────────────────────────────── */
+
+.waymark-theme-terminal {
+  border-radius: 6px;
+  border: 1px solid var(--wm-color1, #00ff41);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--wm-color1, #00ff41) 40%, transparent),
+              2px 4px 14px rgba(0,0,0,0.6);
+  background: var(--wm-color1-dark, #0a0a0a);
+}
+.waymark-theme-terminal .waymark-header {
+  background: color-mix(in srgb, var(--wm-color1-dark, #0a0a0a) 80%, black);
+  border-bottom: 1px solid var(--wm-color1, #00ff41);
+  border-radius: 6px 6px 0 0;
+}
+.waymark-theme-terminal .waymark-color-btn {
+  background: var(--wm-color1, #00ff41) !important;
+  box-shadow: 0 0 6px var(--wm-color1, #00ff41);
+  border-color: transparent;
+  border-radius: 0;
+  width: 10px; height: 10px; min-width: 10px;
+}
+.waymark-theme-terminal .waymark-header .waymark-font-btn--down,
+.waymark-theme-terminal .waymark-header .waymark-font-btn--up,
+.waymark-theme-terminal .waymark-header .waymark-font-label,
+.waymark-theme-terminal .waymark-header .waymark-pin-label,
+.waymark-theme-terminal .waymark-header .waymark-sync,
+.waymark-theme-terminal .waymark-header .waymark-collapse,
+.waymark-theme-terminal .waymark-header .waymark-send-gm,
+.waymark-theme-terminal .waymark-header .waymark-delete {
+  color: color-mix(in srgb, var(--wm-color1, #00ff41) 50%, transparent);
+}
+.waymark-theme-terminal .waymark-content {
+  color: var(--wm-color1, #00ff41);
+  text-shadow: 0 0 6px color-mix(in srgb, var(--wm-color1, #00ff41) 50%, transparent);
+}
+.waymark-theme-terminal .waymark-content::placeholder { color: color-mix(in srgb, var(--wm-color1, #00ff41) 30%, transparent); }
+.waymark-theme-terminal .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--wm-color1, #00ff41) 20%, transparent) 50%);
+}
+
+
+/* ─── 5. Neon ────────────────────────────────────────────────────────────── */
+
+.waymark-theme-neon {
+  border-radius: 6px;
+  border: 1px solid var(--wm-color1, #b400ff);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--wm-color1, #b400ff) 40%, transparent),
+              0 0 40px color-mix(in srgb, var(--wm-color1, #b400ff) 15%, transparent),
+              2px 4px 14px rgba(0,0,0,0.7);
+  background: var(--wm-color1-dark, #0d0d1a);
+}
+.waymark-theme-neon .waymark-header {
+  background: color-mix(in srgb, var(--wm-color1, #b400ff) 12%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--wm-color1, #b400ff) 40%, transparent);
+  border-radius: 6px 6px 0 0;
+}
+.waymark-theme-neon .waymark-color-btn {
+  background: var(--wm-color1, #b400ff) !important;
+  box-shadow: 0 0 8px var(--wm-color1, #b400ff), 0 0 16px color-mix(in srgb, var(--wm-color1, #b400ff) 50%, transparent);
+  border-color: transparent;
+}
+.waymark-theme-neon .waymark-header .waymark-font-btn--down,
+.waymark-theme-neon .waymark-header .waymark-font-btn--up,
+.waymark-theme-neon .waymark-header .waymark-font-label,
+.waymark-theme-neon .waymark-header .waymark-pin-label,
+.waymark-theme-neon .waymark-header .waymark-sync,
+.waymark-theme-neon .waymark-header .waymark-collapse,
+.waymark-theme-neon .waymark-header .waymark-send-gm,
+.waymark-theme-neon .waymark-header .waymark-delete {
+  color: color-mix(in srgb, var(--wm-color1, #b400ff) 60%, white);
+}
+.waymark-theme-neon .waymark-content {
+  color: color-mix(in srgb, var(--wm-color1, #b400ff) 30%, white);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--wm-color1, #b400ff) 60%, transparent);
+}
+.waymark-theme-neon .waymark-content::placeholder { color: color-mix(in srgb, var(--wm-color1, #b400ff) 25%, transparent); }
+.waymark-theme-neon .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--wm-color1, #b400ff) 20%, transparent) 50%);
+}
+
+
+/* ─── 6. Classified ──────────────────────────────────────────────────────── */
+
+.waymark-theme-classified {
+  border-radius: 0;
+  background: #f5f0e8;
+  border: 1px solid #ccc;
+  border-top: 4px solid var(--wm-color1, #cc0000);
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.35);
+}
+.waymark-theme-classified .waymark-header {
+  background: #f5f0e8;
+  border-bottom: 2px solid #ddd;
+}
+.waymark-theme-classified .waymark-color-btn {
+  background: var(--wm-color1, #cc0000) !important;
+  border-radius: 0;
+  border-color: transparent;
+}
+.waymark-theme-classified .waymark-header .waymark-font-btn--down,
+.waymark-theme-classified .waymark-header .waymark-font-btn--up,
+.waymark-theme-classified .waymark-header .waymark-font-label,
+.waymark-theme-classified .waymark-header .waymark-pin-label,
+.waymark-theme-classified .waymark-header .waymark-sync,
+.waymark-theme-classified .waymark-header .waymark-collapse,
+.waymark-theme-classified .waymark-header .waymark-send-gm,
+.waymark-theme-classified .waymark-header .waymark-delete {
+  color: #999;
+}
+.waymark-theme-classified .waymark-header .waymark-font-btn--down { border-left-color: #ddd; }
+.waymark-theme-classified .waymark-header .waymark-pin-btn { border-left-color: #ddd; }
+.waymark-theme-classified .waymark-right-group { border-left-color: #ddd; }
+.waymark-theme-classified .waymark-content { color: #222; }
+.waymark-theme-classified .waymark-content::placeholder { color: rgba(0,0,0,0.3); font-style: italic; }
+.waymark-theme-classified .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.1) 50%);
+}
+
+
+/* ─── 7. Tavern Notice ───────────────────────────────────────────────────── */
+
+.waymark-theme-tavern {
+  border-radius: 4px;
+  background: var(--wm-color2, #4a3120);
+  padding: 8px 8px 4px;
+  box-shadow: 3px 5px 12px rgba(0,0,0,0.6);
+  /* repeating wood grain */
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent, transparent 18px,
+    rgba(0,0,0,0.07) 18px, rgba(0,0,0,0.07) 19px
+  );
+}
+.waymark-theme-tavern .waymark-header {
+  background: color-mix(in srgb, var(--wm-color1-dark, #c4a870) 30%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--wm-color1, #e8d5b0) 20%, transparent);
+  border-radius: 2px 2px 0 0;
+}
+.waymark-theme-tavern .waymark-content,
+.waymark-theme-tavern .waymark-resize-handle,
+.waymark-theme-tavern .waymark-color-panel {
+  /* parchment layer wraps body */
+}
+/* Parchment body via pseudo (we wrap body in a wrapper) — use background on the note body directly */
+.waymark-theme-tavern .waymark-content {
+  background: var(--wm-color1, #e8d5b0);
+  color: #3a2008;
+  box-shadow: inset 0 0 20px rgba(100,70,20,0.2);
+  border-radius: 0 0 2px 2px;
+}
+.waymark-theme-tavern .waymark-content::placeholder { color: rgba(58,32,8,0.35); font-style: italic; }
+/* Color button matches parchment */
+.waymark-theme-tavern .waymark-color-btn {
+  background: var(--wm-color1, #e8d5b0) !important;
+  border-color: rgba(80,50,10,0.3);
+}
+.waymark-theme-tavern .waymark-header .waymark-font-btn--down,
+.waymark-theme-tavern .waymark-header .waymark-font-btn--up,
+.waymark-theme-tavern .waymark-header .waymark-font-label,
+.waymark-theme-tavern .waymark-header .waymark-pin-label,
+.waymark-theme-tavern .waymark-header .waymark-sync,
+.waymark-theme-tavern .waymark-header .waymark-collapse,
+.waymark-theme-tavern .waymark-header .waymark-send-gm,
+.waymark-theme-tavern .waymark-header .waymark-delete {
+  color: rgba(60,35,5,0.6);
+}
+.waymark-theme-tavern .waymark-header .waymark-font-btn--down { border-left-color: rgba(80,50,10,0.2); }
+.waymark-theme-tavern .waymark-header .waymark-pin-btn        { border-left-color: rgba(80,50,10,0.2); }
+.waymark-theme-tavern .waymark-right-group                    { border-left-color: rgba(80,50,10,0.2); }
+.waymark-theme-tavern .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(58,32,8,0.15) 50%);
+}
+
+
+/* ─── 8. Stone Tablet ────────────────────────────────────────────────────── */
+
+.waymark-theme-stone {
+  border-radius: 3px;
+  border: 2px solid color-mix(in srgb, var(--wm-color2, #6b6560) 60%, black);
+  background: linear-gradient(135deg, var(--wm-color2, #6b6560) 0%, color-mix(in srgb, var(--wm-color2, #6b6560) 80%, black) 50%, var(--wm-color2, #6b6560) 100%);
+  box-shadow: 3px 5px 14px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.waymark-theme-stone .waymark-header {
+  background: rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+/* Diamond dot for stone */
+.waymark-theme-stone .waymark-color-btn {
+  border-radius: 0;
+  transform: rotate(45deg);
+  background: var(--wm-color1, #d4c4a8) !important;
+  border-color: color-mix(in srgb, var(--wm-color2, #6b6560) 60%, black);
+  width: 11px; height: 11px; min-width: 11px;
+}
+.waymark-theme-stone .waymark-color-btn:hover { transform: rotate(45deg) scale(1.2); }
+.waymark-theme-stone .waymark-content {
+  color: var(--wm-color1, #d4c4a8);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+.waymark-theme-stone .waymark-content::placeholder { color: color-mix(in srgb, var(--wm-color1, #d4c4a8) 40%, transparent); font-style: italic; }
+.waymark-theme-stone .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 50%);
+}
+
+
+/* ─── 9. Shadowdark ──────────────────────────────────────────────────────── */
+
+.waymark-theme-shadowdark {
+  background: var(--wm-color2, #0a0a0a);
+  border: 1px solid var(--wm-color1, #888888);
+  box-shadow: 3px 5px 16px rgba(0,0,0,0.8);
+  border-radius: 0;
+}
+/* Ornate corner brackets — top two via ::before/::after on the note */
+.waymark-theme-shadowdark::before,
+.waymark-theme-shadowdark::after {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  border-color: var(--wm-color1, #cccccc);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 1;
+}
+.waymark-theme-shadowdark::before { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.waymark-theme-shadowdark::after  { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+/* Bottom corners via injected .wm-corner-bl / .wm-corner-br divs */
+.wm-corner-bl,
+.wm-corner-br {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-color: var(--wm-color1, #cccccc);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 1;
+}
+.wm-corner-bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.wm-corner-br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+.waymark-theme-shadowdark .waymark-header {
+  background: #111111;
+  border-bottom: 1px solid var(--wm-color1, #888888);
+}
+.waymark-theme-shadowdark .waymark-color-btn {
+  border-radius: 0;
+  transform: rotate(45deg);
+  background: var(--wm-color1, #cccccc) !important;
+  border-color: transparent;
+  width: 11px; height: 11px; min-width: 11px;
+}
+.waymark-theme-shadowdark .waymark-color-btn:hover { transform: rotate(45deg) scale(1.2); }
+.waymark-theme-shadowdark .waymark-header .waymark-font-btn--down,
+.waymark-theme-shadowdark .waymark-header .waymark-font-btn--up,
+.waymark-theme-shadowdark .waymark-header .waymark-font-label,
+.waymark-theme-shadowdark .waymark-header .waymark-pin-label,
+.waymark-theme-shadowdark .waymark-header .waymark-sync,
+.waymark-theme-shadowdark .waymark-header .waymark-collapse,
+.waymark-theme-shadowdark .waymark-header .waymark-send-gm,
+.waymark-theme-shadowdark .waymark-header .waymark-delete {
+  color: color-mix(in srgb, var(--wm-color1, #cccccc) 50%, transparent);
+}
+.waymark-theme-shadowdark .waymark-content {
+  color: var(--wm-color1, #cccccc);
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+}
+.waymark-theme-shadowdark .waymark-content::placeholder {
+  color: color-mix(in srgb, var(--wm-color1, #cccccc) 25%, transparent);
+  font-style: italic;
+}
+.waymark-theme-shadowdark .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--wm-color1, #cccccc) 15%, transparent) 50%);
+}
+
+
+/* ─── 10–12. Daggerheart ─────────────────────────────────────────────────── */
+
+.waymark-theme-dh_teal,
+.waymark-theme-dh_gold,
+.waymark-theme-dh_despair {
+  border-radius: 8px;
+  border: 1px solid var(--wm-color1);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--wm-color1) 30%, transparent),
+    0 0 20px color-mix(in srgb, var(--wm-color1) 15%, transparent),
+    3px 5px 16px rgba(0,0,0,0.7);
+  background: var(--wm-color2);
+}
+.waymark-theme-dh_teal .waymark-header,
+.waymark-theme-dh_gold .waymark-header,
+.waymark-theme-dh_despair .waymark-header {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--wm-color2) 80%, white) 0%,
+    var(--wm-color2) 100%
+  );
+  border-bottom: 1px solid var(--wm-color1);
+  border-radius: 8px 8px 0 0;
+}
+.waymark-theme-dh_teal .waymark-color-btn,
+.waymark-theme-dh_gold .waymark-color-btn,
+.waymark-theme-dh_despair .waymark-color-btn {
+  background: var(--wm-color1) !important;
+  border: 1px solid var(--wm-color1-bright, var(--wm-color1));
+  box-shadow: 0 0 6px color-mix(in srgb, var(--wm-color1) 80%, transparent);
+}
+.waymark-theme-dh_teal .waymark-header .waymark-font-btn--down,
+.waymark-theme-dh_teal .waymark-header .waymark-font-btn--up,
+.waymark-theme-dh_teal .waymark-header .waymark-font-label,
+.waymark-theme-dh_teal .waymark-header .waymark-pin-label,
+.waymark-theme-dh_teal .waymark-header .waymark-sync,
+.waymark-theme-dh_teal .waymark-header .waymark-collapse,
+.waymark-theme-dh_teal .waymark-header .waymark-send-gm,
+.waymark-theme-dh_teal .waymark-header .waymark-delete,
+.waymark-theme-dh_gold .waymark-header .waymark-font-btn--down,
+.waymark-theme-dh_gold .waymark-header .waymark-font-btn--up,
+.waymark-theme-dh_gold .waymark-header .waymark-font-label,
+.waymark-theme-dh_gold .waymark-header .waymark-pin-label,
+.waymark-theme-dh_gold .waymark-header .waymark-sync,
+.waymark-theme-dh_gold .waymark-header .waymark-collapse,
+.waymark-theme-dh_gold .waymark-header .waymark-send-gm,
+.waymark-theme-dh_gold .waymark-header .waymark-delete,
+.waymark-theme-dh_despair .waymark-header .waymark-font-btn--down,
+.waymark-theme-dh_despair .waymark-header .waymark-font-btn--up,
+.waymark-theme-dh_despair .waymark-header .waymark-font-label,
+.waymark-theme-dh_despair .waymark-header .waymark-pin-label,
+.waymark-theme-dh_despair .waymark-header .waymark-sync,
+.waymark-theme-dh_despair .waymark-header .waymark-collapse,
+.waymark-theme-dh_despair .waymark-header .waymark-send-gm,
+.waymark-theme-dh_despair .waymark-header .waymark-delete {
+  color: color-mix(in srgb, var(--wm-color1) 60%, transparent);
+}
+.waymark-theme-dh_teal .waymark-content,
+.waymark-theme-dh_gold .waymark-content,
+.waymark-theme-dh_despair .waymark-content {
+  color: var(--wm-text, color-mix(in srgb, var(--wm-color1) 40%, white));
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.waymark-theme-dh_teal .waymark-content::placeholder,
+.waymark-theme-dh_gold .waymark-content::placeholder,
+.waymark-theme-dh_despair .waymark-content::placeholder {
+  color: color-mix(in srgb, var(--wm-color1) 20%, transparent);
+  font-style: italic;
+}
+.waymark-theme-dh_teal .waymark-resize-handle,
+.waymark-theme-dh_gold .waymark-resize-handle,
+.waymark-theme-dh_despair .waymark-resize-handle {
+  background: linear-gradient(135deg, transparent 50%, color-mix(in srgb, var(--wm-color1) 20%, transparent) 50%);
+}
+.waymark-theme-dh_teal .waymark-note--collapsed .waymark-header,
+.waymark-theme-dh_gold .waymark-note--collapsed .waymark-header,
+.waymark-theme-dh_despair .waymark-note--collapsed .waymark-header { border-radius: 8px; }
+
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THEME PICKER APP
+   ══════════════════════════════════════════════════════════════════════════ */
+
+#waymark-theme-picker .window-content { padding: 0; }
+
+#waymark-theme-picker .wm-picker-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#waymark-theme-picker .wm-picker-body {
+  display: flex;
+  flex: 1;
+  gap: 0;
+  min-height: 0;
+}
+
+/* ── LEFT column: scrollable grid ── */
+#waymark-theme-picker .wm-picker-left {
+  flex: 1 1 0;
+  overflow-y: auto;
+  padding: 14px;
+  border-right: 1px solid rgba(0,0,0,0.12);
+}
+
+#waymark-theme-picker .wm-picker-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+#waymark-theme-picker .wm-theme-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#waymark-theme-picker .wm-theme-card {
+  width: 160px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  padding: 5px;
+  transition: border-color 0.12s, background 0.12s;
+  background: rgba(0,0,0,0.03);
+}
+#waymark-theme-picker .wm-theme-card:hover {
+  border-color: rgba(0,0,0,0.18);
+  background: rgba(0,0,0,0.06);
+}
+#waymark-theme-picker .wm-theme-card--selected {
+  border-color: #5a7fc0;
+  background: rgba(90,127,192,0.08);
+}
+
+#waymark-theme-picker .wm-preview-note {
+  width: 100%;
+  height: 82px;
+  border-radius: inherit;
+  overflow: visible;
+  position: relative;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--wm-font, "Patrick Hand", cursive);
+}
+#waymark-theme-picker .wm-preview-note .waymark-header {
+  height: 22px;
+  padding: 0 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+#waymark-theme-picker .wm-preview-note .waymark-content {
+  flex: 1;
+  overflow: hidden;
+  line-height: 1.35;
+  border-radius: 0 0 inherit inherit;
+}
+
+#waymark-theme-picker .wm-theme-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 5px;
+  text-align: center;
+}
+#waymark-theme-picker .wm-theme-font {
+  font-size: 10px;
+  color: #aaa;
+  text-align: center;
+  margin-top: 1px;
+}
+
+/* ── RIGHT column: live preview panel ── */
+#waymark-theme-picker .wm-picker-right {
+  width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  background: rgba(0,0,0,0.02);
+}
+
+#waymark-theme-picker .wm-live-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#waymark-theme-picker .wm-live-theme-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+/* The large live preview note */
+#waymark-theme-picker .wm-live-preview-note {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--wm-font, "Patrick Hand", cursive);
+  overflow: visible;
+  position: relative;
+  min-height: 120px;
+}
+#waymark-theme-picker .wm-live-preview-note .waymark-header {
+  height: 28px;
+  padding: 0 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+#waymark-theme-picker .wm-live-preview-note .waymark-content {
+  flex: 1;
+  overflow: hidden;
+  line-height: 1.45;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+/* Controls below the live preview */
+#waymark-theme-picker .wm-live-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#waymark-theme-picker .wm-live-control-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+#waymark-theme-picker .wm-live-swatch-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#waymark-theme-picker .wm-live-swatch-group label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #666;
+}
+#waymark-theme-picker .wm-live-swatch-group input[type=color] {
+  width: 44px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+#waymark-theme-picker .wm-live-font-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#waymark-theme-picker .wm-live-font-group label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #666;
+}
+#waymark-theme-picker .wm-font-select {
+  width: 100%;
+  height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+/* Font options rendered in their own face via JS */
+#waymark-theme-picker .wm-font-option {
+  padding: 2px 0;
+  font-size: 14px;
+}
+
+#waymark-theme-picker .wm-picker-footer {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+#waymark-theme-picker .wm-save-btn {
+  flex: 1;
+  padding: 9px 0;
+  background: #5a7fc0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.1s;
+}
+#waymark-theme-picker .wm-save-btn:hover { background: #4a6fb0; }
+#waymark-theme-picker .wm-reset-btn {
+  flex: 1;
+  padding: 9px 0;
+  background: #444;
+  color: #ccc;
+  border: 1px solid #555;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s;
+}
+#waymark-theme-picker .wm-reset-btn:hover { background: #555; color: #fff; }
+
+/* ─── Permissions dialog ─────────────────────────────────────────────────── */
+/* Uses Foundry's native .form-group layout — minimal overrides needed.     */
+
+.waymark-perms-pip {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+/* ─── Author badge ───────────────────────────────────────────────────────── */
+
+.waymark-author {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  opacity: 0.55;
+  font-style: italic;
+  line-height: 1;
+  pointer-events: none;
+  /* Default: dark text for light-background themes */
+  color: rgba(0,0,0,0.7);
+}
+/* Dark-background themes get light author text */
+.waymark-theme-chalkboard .waymark-author,
+.waymark-theme-terminal .waymark-author,
+.waymark-theme-neon .waymark-author,
+.waymark-theme-shadowdark .waymark-author,
+.waymark-theme-dh_despair .waymark-author,
+.waymark-theme-dh_teal .waymark-author,
+.waymark-theme-dh_gold .waymark-author {
+  color: rgba(255,255,255,0.65);
+}
+
+/* ─── Dialog / popup z-index ─────────────────────────────────────────────── */
+/* Notes run 100–999 in JS. Dialog V1 gets explicit zIndex: 9999999.        */
+
+#waymark-permissions {
+  z-index: 9999999 !important;
+}

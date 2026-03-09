@@ -1,0 +1,81 @@
+<form class="wm-picker-form">
+  <input type="hidden" name="theme" value="{{currentTheme}}">
+
+  <div class="wm-picker-body">
+
+    {{!-- LEFT: theme grid --}}
+    <div class="wm-picker-left">
+      <div class="wm-picker-section-label">Choose a Style</div>
+      <div class="wm-theme-grid">
+        {{#each themes}}
+        <div class="wm-theme-card {{#if selected}}wm-theme-card--selected{{/if}}"
+             data-theme="{{key}}">
+          <div class="wm-preview-note waymark-theme-{{key}}" style="{{cssVarsStyle}}">
+            <div class="waymark-header">
+              <div class="waymark-color-btn" style="background:{{color1}}"></div>
+              <span style="font-size:9px;color:rgba(255,255,255,.55);">24</span>
+              <span style="font-size:12px;opacity:.4;">📌</span>
+              <div style="flex:1"></div>
+              <div style="font-size:8px;color:rgba(255,255,255,.5);display:flex;gap:4px;padding-left:6px;border-left:1px solid rgba(255,255,255,.15);">⟳ ▲ ✕</div>
+            </div>
+            <div class="waymark-content" style="font-size:12px;padding:7px 9px;pointer-events:none;">Meet at the mill.<br>The baron lies.</div>
+          </div>
+          <div class="wm-theme-label">{{label}}</div>
+          <div class="wm-theme-font">{{font}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+
+    {{!-- RIGHT: live preview + controls --}}
+    <div class="wm-picker-right">
+      <div class="wm-picker-section-label">Preview & Customize</div>
+
+      <div class="wm-live-panel">
+        <div class="wm-live-theme-name">{{selDef.label}}</div>
+
+        {{!-- Large live preview note --}}
+        <div class="wm-live-preview-note waymark-theme-{{selDef.key}}" style="{{selDef.cssVarsStyle}}">
+          <div class="waymark-header">
+            <div class="waymark-color-btn" style="background:{{currentColor1}}"></div>
+            <span style="font-size:10px;color:rgba(255,255,255,.55);">24</span>
+            <span style="font-size:14px;opacity:.4;">📌</span>
+            <div style="flex:1"></div>
+            <div style="font-size:9px;color:rgba(255,255,255,.5);display:flex;gap:5px;padding-left:8px;border-left:1px solid rgba(255,255,255,.15);">⟳ ▲ ✕</div>
+          </div>
+          <div class="waymark-content" style="padding:12px 14px;pointer-events:none;">The secret meeting is tonight at the old mill.<br>Don't trust the baron — he's been lying all along.</div>
+        </div>
+
+        {{!-- Controls --}}
+        <div class="wm-live-controls">
+          <div class="wm-live-control-row">
+            <div class="wm-live-swatch-group">
+              <label class="wm-live-primary-label">{{selDef.primaryLabel}}</label>
+              <input type="color" name="themeColor1" value="{{currentColor1}}">
+            </div>
+            <div class="wm-live-swatch-group wm-live-color2-group">
+              <label class="wm-live-secondary-label">{{selDef.secondaryLabel}}</label>
+              <input type="color" name="themeColor2" value="{{currentColor2}}">
+            </div>
+          </div>
+          <div class="wm-live-font-group">
+            <label>Font</label>
+            <select name="themeFont" class="wm-font-select">
+              <option value="" style="font-family:sans-serif;">— Theme Default —</option>
+              {{#each fonts}}
+              <option value="{{this}}" class="wm-font-option"
+                {{#if (eq this ../currentFontOrTheme)}}selected{{/if}}>{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="wm-picker-footer">
+        <button type="button" class="wm-reset-btn"><i class="fas fa-undo"></i> Reset to Defaults</button>
+        <button type="submit" class="wm-save-btn"><i class="fas fa-check"></i> Apply</button>
+      </div>
+    </div>
+
+  </div>
+</form>
