@@ -31,7 +31,7 @@ Waymarks lets Game Masters (and optionally players) pin resizable notes directly
 Search for **Waymarks** in the Add-on Modules browser, or paste the manifest URL directly:
 
 ```
-https://raw.githubusercontent.com/MrJamela/waymarks/main/module.json
+https://github.com/MrJamela/waymarks/releases/latest/download/module.json
 ```
 
 ### Manual
