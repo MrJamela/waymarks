@@ -130,9 +130,68 @@
 
 /* ─── Header spacer ──────────────────────────────────────────────────────── */
 
-.waymark-header-spacer { flex: 1; }
+.waymark-header-spacer { flex: 1; min-width: 4px; }
 
-/* ─── Right group ────────────────────────────────────────────────────────── */
+/* ─── Title input ────────────────────────────────────────────────────────── */
+
+.waymark-title {
+  all: unset;
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 140px;
+  font-family: var(--wm-font, "Patrick Hand", cursive);
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  padding: 1px 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: text;
+  transition: color 0.15s, border-color 0.15s, max-width 0.2s;
+  user-select: text;
+  box-sizing: border-box;
+}
+.waymark-title::placeholder {
+  color: rgba(255,255,255,0.2);
+  font-style: italic;
+}
+.waymark-title:hover {
+  color: rgba(255,255,255,0.75);
+  border-bottom-color: rgba(255,255,255,0.2);
+}
+.waymark-title:focus {
+  color: rgba(255,255,255,0.95);
+  border-bottom-color: rgba(255,255,255,0.5);
+  outline: none;
+  max-width: 200px;
+}
+
+/* ─── Collapsed state ────────────────────────────────────────────────────── */
+
+.waymark-note--collapsed { height: auto !important; min-height: 0 !important; overflow: hidden; }
+.waymark-note--collapsed .waymark-content,
+.waymark-note--collapsed .waymark-resize-handle,
+.waymark-note--collapsed .waymark-author { display: none; }
+
+/* When collapsed, title expands to fill space and becomes the focal point */
+.waymark-note--collapsed .waymark-title {
+  flex: 1 1 auto;
+  max-width: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  border-bottom-color: transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.waymark-note--collapsed .waymark-title:focus {
+  color: rgba(255,255,255,0.95);
+  border-bottom-color: rgba(255,255,255,0.4);
+}
+/* Suppress spacer when collapsed — title takes up that space */
+.waymark-note--collapsed .waymark-header-spacer { display: none; }
 
 .waymark-right-group {
   display: flex;
@@ -304,12 +363,6 @@
   border-radius: 0 0 6px 0;
 }
 
-/* ─── Collapsed state ────────────────────────────────────────────────────── */
-
-.waymark-note--collapsed { height: auto !important; min-height: 0 !important; overflow: hidden; }
-.waymark-note--collapsed .waymark-content,
-.waymark-note--collapsed .waymark-resize-handle { display: none; }
-
 
 /* ══════════════════════════════════════════════════════════════════════════
    THEMES — Each theme uses CSS variables set by applyColors() in JS.
@@ -328,7 +381,7 @@
   background: rgba(0,0,0,0.42);
   border-radius: 6px 6px 0 0;
 }
-.waymark-theme-sticky .waymark-content { color: rgba(0,0,0,0.8); }
+.waymark-theme-sticky .waymark-content { color: var(--wm-auto-text, rgba(0,0,0,0.8)); }
 .waymark-theme-sticky .waymark-content::placeholder { color: rgba(0,0,0,0.3); font-style: italic; }
 .waymark-theme-sticky .waymark-resize-handle {
   background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.2) 50%);
@@ -351,7 +404,7 @@
   border-bottom: 3px solid color-mix(in srgb, var(--wm-color1, #c0392b) 70%, black);
   border-radius: 2px 2px 0 0;
 }
-.waymark-theme-indexcard .waymark-content { color: #222; }
+.waymark-theme-indexcard .waymark-content { color: var(--wm-auto-text, rgba(0,0,0,0.8)); }
 .waymark-theme-indexcard .waymark-content::placeholder { color: rgba(0,0,0,0.3); font-style: italic; }
 .waymark-theme-indexcard .waymark-resize-handle {
   background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.15) 50%);
@@ -493,7 +546,12 @@
 .waymark-theme-classified .waymark-header .waymark-font-btn--down { border-left-color: #ddd; }
 .waymark-theme-classified .waymark-header .waymark-pin-btn { border-left-color: #ddd; }
 .waymark-theme-classified .waymark-right-group { border-left-color: #ddd; }
-.waymark-theme-classified .waymark-content { color: #222; }
+.waymark-theme-classified .waymark-title { color: rgba(0,0,0,0.4); }
+.waymark-theme-classified .waymark-title::placeholder { color: rgba(0,0,0,0.2); }
+.waymark-theme-classified .waymark-title:hover { color: rgba(0,0,0,0.65); border-bottom-color: rgba(0,0,0,0.2); }
+.waymark-theme-classified .waymark-title:focus { color: rgba(0,0,0,0.85); border-bottom-color: rgba(0,0,0,0.4); }
+.waymark-theme-classified .waymark-note--collapsed .waymark-title { color: rgba(0,0,0,0.75); }
+.waymark-theme-classified .waymark-content { color: var(--wm-auto-text, rgba(0,0,0,0.8)); }
 .waymark-theme-classified .waymark-content::placeholder { color: rgba(0,0,0,0.3); font-style: italic; }
 .waymark-theme-classified .waymark-resize-handle {
   background: linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.1) 50%);
@@ -527,7 +585,7 @@
 /* Parchment body via pseudo (we wrap body in a wrapper) — use background on the note body directly */
 .waymark-theme-tavern .waymark-content {
   background: var(--wm-color1, #e8d5b0);
-  color: #3a2008;
+  color: var(--wm-auto-text, rgba(0,0,0,0.8));
   box-shadow: inset 0 0 20px rgba(100,70,20,0.2);
   border-radius: 0 0 2px 2px;
 }
@@ -550,6 +608,11 @@
 .waymark-theme-tavern .waymark-header .waymark-font-btn--down { border-left-color: rgba(80,50,10,0.2); }
 .waymark-theme-tavern .waymark-header .waymark-pin-btn        { border-left-color: rgba(80,50,10,0.2); }
 .waymark-theme-tavern .waymark-right-group                    { border-left-color: rgba(80,50,10,0.2); }
+.waymark-theme-tavern .waymark-title { color: rgba(60,35,5,0.5); }
+.waymark-theme-tavern .waymark-title::placeholder { color: rgba(60,35,5,0.25); }
+.waymark-theme-tavern .waymark-title:hover { color: rgba(60,35,5,0.75); border-bottom-color: rgba(60,35,5,0.2); }
+.waymark-theme-tavern .waymark-title:focus { color: rgba(60,35,5,0.9); border-bottom-color: rgba(60,35,5,0.4); }
+.waymark-theme-tavern .waymark-note--collapsed .waymark-title { color: rgba(60,35,5,0.8); }
 .waymark-theme-tavern .waymark-resize-handle {
   background: linear-gradient(135deg, transparent 50%, rgba(58,32,8,0.15) 50%);
 }
@@ -1019,9 +1082,18 @@
   color: rgba(255,255,255,0.65);
 }
 
-/* ─── Dialog / popup z-index ─────────────────────────────────────────────── */
-/* Notes run 100–999 in JS. Dialog V1 gets explicit zIndex: 9999999.        */
+/* ─── Toolbar button (scene controls) ───────────────────────────────────── */
+/* The sticky note icon injected into Foundry's left scene controls toolbar. */
+/* Foundry styles the surrounding li/button structure — we just need to      */
+/* ensure our specific button has a visible hover and active state.           */
 
-#waymark-permissions {
-  z-index: 9999999 !important;
+.waymarks-tool:hover {
+  color: var(--color-warm-1, #ff6400) !important;
+  text-shadow: 0 0 8px var(--color-warm-1, #ff6400);
+}
+
+.waymarks-tool:active,
+.waymarks-tool.active {
+  color: var(--color-warm-1, #ff6400) !important;
+  text-shadow: 0 0 12px var(--color-warm-1, #ff6400);
 }

@@ -1,39 +1,36 @@
-<form class="standard-form" autocomplete="off">
-  <p class="instructions">Configure who can view or edit this Waymark.</p>
+<div class="wm-permissions-root">
+<p class="instructions">{{localize "WAYMARKS.Perms.Instructions"}}</p>
 
-  <menu class="standard-form scrollable">
-    <li class="form-group">
-      <label>All Players</label>
-      <div class="form-fields">
-        <select name="default" data-dtype="Number">
-          {{#each levels}}
-            <option value="{{value}}" {{#if (eq ../defaultLevel value)}}selected{{/if}}>{{label}}</option>
-          {{/each}}
-        </select>
-      </div>
-    </li>
+<menu class="standard-form scrollable">
+  <li class="form-group">
+    <label>{{localize "WAYMARKS.Perms.AllPlayers"}}</label>
+    <div class="form-fields">
+      <select name="default">
+        {{selectOptions defaultChoices selected=defaultLevel}}
+      </select>
+    </div>
+  </li>
 
-    {{#each users}}
-    <li class="form-group{{#if isGM}} gm{{/if}}">
-      <label>
-        <span class="waymark-perms-pip" style="background:{{color}}"></span>
-        {{name}}
-        {{#if isGM}}<i class="role-icon fa-solid fa-crown fa-fw"></i>{{/if}}
-      </label>
-      <div class="form-fields">
-        <select name="{{id}}" data-dtype="Number">
-          {{#each ../userLevels}}
-            <option value="{{value}}" {{#if (eq ../../level value)}}selected{{/if}}>{{label}}</option>
-          {{/each}}
-        </select>
-      </div>
-    </li>
-    {{/each}}
-  </menu>
+  {{#each users}}
+  <li class="form-group{{#if isGM}} gm{{/if}}">
+    <label>
+      <span class="waymark-perms-pip" style="background:{{color}}"></span>
+      {{name}}
+      {{#if isGM}}<i class="role-icon fa-solid fa-crown fa-fw"></i>{{/if}}
+    </label>
+    <div class="form-fields">
+      <select name="{{id}}">
+        {{selectOptions ../userChoices selected=level}}
+      </select>
+    </div>
+  </li>
+  {{/each}}
+</menu>
 
-  <footer class="sheet-footer">
-    <button type="submit" name="submit">
-      <i class="fas fa-save"></i> Save Changes
-    </button>
-  </footer>
-</form>
+<footer class="sheet-footer">
+  <button type="submit" name="submit">
+    <i class="fas fa-save"></i> {{localize "WAYMARKS.Perms.SaveChanges"}}
+  </button>
+</footer>
+
+</div>

@@ -1,0 +1,109 @@
+{
+  "WAYMARKS": {
+    "Settings": {
+      "Theme": "Note Style",
+      "ThemeHint": "The visual theme applied to all Waymarks in this world.",
+      "ThemeColor1": "Note Color (Primary)",
+      "ThemeColor1Hint": "Primary color override for the current theme.",
+      "ThemeColor2": "Note Color (Secondary)",
+      "ThemeColor2Hint": "Secondary color override for the current theme.",
+      "ThemeFont": "Note Font",
+      "ThemeFontHint": "Font override for the current theme.",
+      "ThemeColorOwner": "Theme Color Owner",
+      "PlayerCreate": "Allow Players to Create Waymarks",
+      "PlayerCreateHint": "Players can create new Waymarks using the toolbar button. The GM must be online.",
+      "PlayerEdit": "Allow Players to Edit Waymarks",
+      "PlayerEditHint": "Players with Owner permission on a Waymark can edit its content, color, and font size.",
+      "PlayerPin": "Allow Players to Pin Waymarks to Scenes",
+      "PlayerPinHint": "Players with Owner permission can pin and unpin Waymarks to scenes.",
+      "ThemePickerName": "Note Style",
+      "ThemePickerLabel": "Open Theme Picker",
+      "ThemePickerHint": "Choose a visual theme and customize colors and font for your Waymarks.",
+      "ThemeColorOwnerHint": "Internal: tracks which theme the saved colors belong to."
+    },
+    "Button": {
+      "ChangeColor": "Change color",
+      "DecreaseFontSize": "Decrease font size",
+      "IncreaseFontSize": "Increase font size",
+      "PinToScene": "Pin to current scene",
+      "UnpinFromScene": "Unpin from scene",
+      "TitlePlaceholder": "Add title...",
+      "OpenThemePicker": "Open Theme Picker",
+      "Collapse": "Collapse",
+      "Expand": "Expand",
+      "DeleteWaymark": "Delete waymark",
+      "CloseNote": "Close note",
+      "ManagePermissions": "Manage permissions",
+      "SendToGM": "Send to GM",
+      "ContentPlaceholder": "Write something...",
+      "AddWaymark": "Add Waymark"
+    },
+    "Dialog": {
+      "DeleteTitle": "Delete Waymark",
+      "DeleteBody": "<p>Delete this waymark? This cannot be undone.</p>"
+    },
+    "Notify": {
+      "NeedGM": "A GM must be online to create notes.",
+      "SocketNotReady": "Waymarks: socketlib not ready.",
+      "NoPinScene": "Waymarks: No active scene to pin to."
+    },
+    "Picker": {
+      "ChooseStyle": "Choose a Style",
+      "PreviewCustomize": "Preview & Customize",
+      "ThemeDefault": "\u2014 Theme Default \u2014",
+      "Font": "Font",
+      "ResetDefaults": "Reset to Defaults",
+      "Apply": "Apply",
+      "Custom": "Custom",
+      "ResetToTheme": "Reset to theme default",
+      "PreviewText": "Meet at the mill.\nThe baron lies.",
+      "PreviewBodyLong": "The secret meeting is tonight at the old mill.\nDon't trust the baron \u2014 he's been lying all along."
+    },
+    "Perms": {
+      "Instructions": "Configure who can view or edit this Waymark.",
+      "AllPlayers": "All Players",
+      "SaveChanges": "Save Changes",
+      "LevelDefault": "Default",
+      "LevelNone": "None",
+      "LevelObserver": "Observer",
+      "LevelOwner": "Owner",
+      "WindowTitle": "Waymark \u2014 Ownership"
+    },
+    "Theme": {
+      "Sticky": "Sticky Note",
+      "Indexcard": "Index Card",
+      "Chalkboard": "Chalkboard",
+      "Terminal": "Terminal",
+      "Neon": "Neon",
+      "Classified": "Classified",
+      "Tavern": "Tavern Notice",
+      "Stone": "Stone Tablet",
+      "Shadowdark": "Shadowdark",
+      "DhTeal": "Daggerheart \u2014 Teal",
+      "DhGold": "Daggerheart \u2014 Gold",
+      "DhDespair": "Daggerheart \u2014 Despair",
+      "PrimaryLabel": {
+        "NoteColor": "Note Color",
+        "HeaderColor": "Header Color",
+        "FrameColor": "Frame Color",
+        "GlowColor": "Glow Color",
+        "NeonColor": "Neon Color",
+        "AccentColor": "Accent Color",
+        "ParchmentColor": "Parchment Color",
+        "TextColor": "Text Color",
+        "InkBorderColor": "Ink / Border Color",
+        "BorderGlow": "Border / Glow"
+      },
+      "SecondaryLabel": {
+        "BoardColor": "Board Color",
+        "WoodColor": "Wood Color",
+        "StoneColor": "Stone Color",
+        "BackgroundColor": "Background Color"
+      }
+    },
+    "Author": {
+      "Badge": "\u2014 {name}",
+      "UnknownScene": "Unknown Scene"
+    }
+  }
+}
