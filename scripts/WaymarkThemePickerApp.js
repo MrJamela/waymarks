@@ -51,7 +51,7 @@ export class WaymarkThemePickerApp extends HandlebarsApplicationMixin(Applicatio
       height: "auto",
     },
     window: {
-      title: game.i18n.localize("WAYMARKS.Settings.ThemePickerName"),
+      title: "WAYMARKS.Settings.ThemePickerName",
       resizable: true,
     },
   };
