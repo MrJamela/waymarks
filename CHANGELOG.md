@@ -1,5 +1,9 @@
 # Waymarks Changelog
 
+## [Unreleased]
+### Fixed
+- Theme picker crashed on world load. `DEFAULT_OPTIONS.window.title` called `game.i18n.localize` while the esmodule was still importing, before i18n exists. The title is now the localization key; ApplicationV2 localizes it when the window renders.
+
 ## v0.8.3
 ### Added
 - **Internationalization** — All user-facing strings moved to `lang/en.json`. Settings names and hints, button titles and placeholders, dialog text, theme names, picker labels, notifications, and author badges all route through `game.i18n.localize()` / `game.i18n.format()`. Key namespace: `WAYMARKS.*`.
